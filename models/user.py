@@ -1,27 +1,17 @@
 #!/usr/bin/python3
 """This module defines a class User"""
-from models.base_model import BaseModel, Base
+from models.base_model import BaseModel
 
 # SQLAlchemy modules
 from sqlalchemy import Column
 from sqlalchemy import String
 from sqlalchemy.orm import relationship
 
-
-class User(BaseModel, Base):
-    """
-    Defines a class User
-
-    Attributes:
-        __tablename__ (str): Users MySQL table name
-
-        email (String): User's email address column
-        password (String): User's password column
-        first_name (String): User's first name column
-        last_name (String): User's last name column
-    """
+class User(BaseModel):
+    """This class defines a user by various attributes"""
+    
     __tablename__ = 'users'
-
+    
     email = Column(String(128), nullable=False)
     password = Column(String(128), nullable=False)
     first_name = Column(String(128))
@@ -35,3 +25,4 @@ class User(BaseModel, Base):
                            backref='user',
                            cascade='all, delete-orphan',
                            passive_deletes=True)
+
